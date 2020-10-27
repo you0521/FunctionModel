@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--自定义progressDialog的背景颜色-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="8dp" />
+    <solid android:color="#ed722e" />
+</shape>

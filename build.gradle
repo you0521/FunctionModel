@@ -1,0 +1,56 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.0'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+ext {
+    // APP唯一标识
+    appId = "com.ljkj.demo"
+    // 编译版本
+    compileSdkVersion = 28
+    // 最小支持版本
+    minSdkVersion = 15
+    // 当前版本
+    targetSdkVersion = 28
+    // APP版本号
+    versionCode = 1
+    // APP版本名
+    versionName = "1.0"
+    // JDK编译版本
+    jdkVersion = "1.8"
+
+
+    // 调试版签名
+    debugKeyAlias = ""
+    // 调试版签名密码
+    debugKeyPassword = ""
+    // 调试版签名文件
+    debugStoreFile = ""
+
+    // 正式版签名
+    releaseKeyAlias = ""
+    // 正式版签名密码
+    releaseKeyPassword = ""
+    // 正式版签名文件
+    releaseStoreFile = ""
+
+}

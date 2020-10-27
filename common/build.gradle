@@ -1,0 +1,71 @@
+apply plugin: 'com.android.library'
+android {
+    compileSdkVersion 28
+
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // V7支持包 版本：28.0.0
+    api 'com.android.support:appcompat-v7:28.0.0'
+    //约束布局 版本：1.1.3
+    api 'com.android.support.constraint:constraint-layout:1.1.3'
+    // V4支持包 版本：28.0.0
+    api 'com.android.support:support-v4:28.0.0'
+    //RecyclerView 版本：28.0.0
+    api 'com.android.support:recyclerview-v7:28.0.0'
+    // Design，版本28.0.0
+    api 'com.android.support:design:28.0.0'
+    //okhttp3网络框架 版本：3.14.0
+    api 'com.squareup.okhttp3:okhttp:3.14.0'
+    //Okhttp，Log插件 网络请求框架 版本：3.14.0
+    api 'com.squareup.okhttp3:logging-interceptor:3.14.0'
+    //GOSN JSON解析框架 版本：2.8.5
+    api 'com.google.code.gson:gson:2.8.5'
+    //Retrofit网络请求框架 版本：2.6.0
+    api 'com.squareup.retrofit2:retrofit:2.6.0'
+    //Retrofit与GSON整合依赖包 版本：2.6.0
+    api 'com.squareup.retrofit2:converter-gson:2.6.0'
+    //Retrofit与Rxjava2整合依赖包 版本号：2.6.0
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.6.0'
+    //RxJava2一种响应式编程框架 版本号：2.+
+    api 'io.reactivex.rxjava2:rxjava:2.+'
+    //RxJava2与Android整合依赖包 版本号：2.+
+    api 'io.reactivex.rxjava2:rxandroid:2.+'
+    //Glide图片加载框架 版本号：4.10.0
+    api 'com.github.bumptech.glide:glide:4.9.0'
+    //Glide自动编译器  版本：4.10.0
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    //EventBus依赖包
+    api 'org.greenrobot:eventbus:3.1.1'
+    //强大灵活的适配器 版本号：2.+
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.+'
+    //自动查找ID 版本号：8.8.1
+    api 'com.jakewharton:butterknife:8.8.1'
+    //自动查找ID自动编译器 版本：8.8.1
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    // 沉浸式状态栏 版本：3.0.0
+    api 'com.gyf.immersionbar:immersionbar:3.0.0'
+}

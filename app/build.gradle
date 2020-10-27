@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId rootProject.ext.appId
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    //配置lint来忽略(ignore)ValidFragment检查
+    lintOptions {
+        //// 如果为 true，则当lint发现错误时停止 gradle构建
+        abortOnError false
+    }
+    // DEX分包方案
+    dexOptions {
+        jumboMode true
+        preDexLibraries = false
+        javaMaxHeapSize '2g'
+    }
+
+    // 打包管理，打包命名规则是：Demo_v版本名_日期_(debug/release).apk
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            def date = new Date()
+            def formattedDate = date.format('yyyyMMddHHmmss')
+            def apkFileName
+            if (variant.buildType.name == "debug") {
+                apkFileName = "Demo_v${defaultConfig.versionName}_${formattedDate}_debug.apk"
+            } else if (variant.buildType.name == "release") {
+                apkFileName = "Demo_V${defaultConfig.versionName}_${formattedDate}_release.apk"
+            }
+            outputFileName = apkFileName
+        }
+    }
+    //Java编译管理配置
+    compileOptions {
+        sourceCompatibility = rootProject.ext.jdkVersion
+        targetCompatibility = rootProject.ext.jdkVersion
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':common')
+    // DEX分包，用于解决64K的问题，版本:1.0.3
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.android.support:multidex-instrumentation:1.0.3'
+    //自动查找ID 版本号：8.5.1
+    api 'com.jakewharton:butterknife:8.8.1'
+    //自动查找ID自动编译器 版本：8.5.1
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+}
